@@ -223,29 +223,97 @@ class Administrador < Usuario
 		puts "Servicio " + nuevo_servicio.get_nombre + " creado"
 	end
 
-end
+	def menu
+		#########################
+		#L_op = ["1","2","3","4","5","6","7","8"]
+		op = ""
 
-#########################
-L_op = ["1","2","3","4","5","6","7","8"]
-op = ""
+		while !op.eql?"8" do
 
-while !op.eql?"8" do
+			puts "ADMINISTRACION"
 
-	puts "1)Crear cliente"
-	puts "2)Crear proveedor"
-	puts "3)Crear servicio"
-	puts "4)Actualizar datos cliente"
-	puts "5)Actualizar datos proveedor"
-	puts "6)Desactivar cliente"
-	puts "7)Desactivar proveedor"
-	puts "8)Salir"
+			puts "Clientes registrados --" 
+			puts @clientes
+			puts "Proveedores registrados --" 
+			puts @proveedores
+			puts "Servicios registrados --" 
+			puts @servicios
 
-	op= gets.to_s
-	op = op[0]
+			puts "MENU"
 
-	if op=="1"
-		puts "Crear cliente"
+			puts "1)Crear cliente"
+			puts "2)Crear proveedor"
+			puts "3)Crear servicio"
+			puts "4)Actualizar datos cliente"
+			puts "5)Actualizar datos proveedor"
+			puts "6)Desactivar cliente"
+			puts "7)Desactivar proveedor"
+			puts "8)Salir"
+
+			op= gets.to_s
+			op = op[0]
+
+			puts ""
+
+			if op=="1"
+				puts "=>Crear cliente"
+				puts "Ingrese nombre del cliente"
+				nombre_cliente = gets
+				nombre_cliente = nombre_cliente[0.. nombre_cliente.length-2]
+				puts "Ingrese el usuario del cliente"
+				usuario_cliente = gets
+				usuario_cliente = usuario_cliente[0..usuario_cliente.length-2]
+				puts "Ingrese la contraseña del cliente"
+				usuario_contrasenia = gets
+				usuario_contrasenia = usuario_contrasenia[0 .. usuario_contrasenia.length-2]
+				cliente = Cliente.new(nombre_cliente,usuario_cliente,usuario_contrasenia)
+				@clientes << cliente
+			end
+
+			if op=="2"
+				puts "=>Crear proveedor"
+				puts "Ingrese nombre del proveedor"
+				nombre_provedor = gets
+				nombre_provedor = nombre_provedor[0 .. nombre_provedor.length-2]
+
+				puts "Ingrese usuario del proveedor"
+				usuario_proveedor = gets
+				usuario_proveedor = usuario_proveedor[0 .. usuario_proveedor.length-2]
+
+				puts "Ingrese contraseña del proveedor"
+				contrasenia_proveedor = gets
+				contrasenia_proveedor = contrasenia_proveedor[0 .. contrasenia_proveedor.length-2]
+
+				proveedor = Proveedor.new(nombre_provedor,usuario_proveedor,contrasenia_proveedor)
+				@proveedores << proveedor
+			end
+
+			if op=="3"
+				puts "=>Crear servicio"
+			end
+
+			if op=="4"
+				puts "=>Actualizar datos cliente"
+			end
+
+			if op=="5"
+				puts "=>Actualizar datos proveedor"
+			end
+
+			if op=="6"
+				puts "=>Desactivar cliente"
+			end
+
+			if op=="7"
+				puts "=>descativar proveedor"
+			end
+
+			puts ""
+		end
 	end
 
 end
 
+####################
+admin = Administrador.new("erick","admin","admin")
+admin.menu
