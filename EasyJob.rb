@@ -40,6 +40,7 @@ class Servicio
 	end
 
 end
+
 #clase Usuario
 class Usuario
 	def initialize(nombre,usuario,contrasenia)
@@ -84,10 +85,6 @@ class Cliente < Usuario
 
 	#metodos
 
-	def solicitar_plataforma(proveedor,servicio)
-		proveedor.
-	end
-
 	def cambiar_estado_aceptado
 		@aceptado = true
 	end
@@ -101,10 +98,11 @@ class Cliente < Usuario
 	end
 
 	def enviar_propuesta(proveedor,servicio)
-		propuesta = Propuesta.new(self,servicio)
+		propuesta = Propuesta.new(servicio)
 		proveedor.recibir_propuesta(propuesta)
 	end
 end
+
 #clase propuesta
 class Propuesta
 	def initialize(cliente,servicio)
@@ -123,6 +121,9 @@ class Propuesta
 		@cliente.cambiar_estado_negado
 		puts "Cliente " + cliente + " " + cliente.getEstado + " con servicio " + servicio.getEstado
 	end
+end
+
+
 
 #clase Proveedor
 class Proveedor < Usuario
@@ -147,7 +148,6 @@ class Proveedor < Usuario
 		servicio.configurar_tarifa(tarifa)
 		puts "Servicio " + servicio.get_nombre + " actualizado a tarifa " + servicio.get_tarifa
 	end
-##############Cambio
 
 	def recibir_propuesta(propuesta)
 		@propuestas << propuesta
@@ -166,6 +166,7 @@ class Proveedor < Usuario
 			cliente_i.get_nombre <=> usuario
 				@clientes.delete(cliente_i)
 				puts "Cliente " + usuario + " desactivado"
+		end
 	end
 end
 
@@ -223,9 +224,28 @@ class Administrador < Usuario
 	end
 
 end
+
 #########################
-administrador = Administrador.new("Erick","user","admin")
-administrador.crear_cliente("Erick","ee","3")
-administrador.crear_proveedor("prove","23","123")
-administrador.desactivar_cliente("Erick")
-administrador.crear_servicio("le",21)
+L_op = ["1","2","3","4","5","6","7","8"]
+op = ""
+
+while !op.eql?"8" do
+
+	puts "1)Crear cliente"
+	puts "2)Crear proveedor"
+	puts "3)Crear servicio"
+	puts "4)Actualizar datos cliente"
+	puts "5)Actualizar datos proveedor"
+	puts "6)Desactivar cliente"
+	puts "7)Desactivar proveedor"
+	puts "8)Salir"
+
+	op= gets.to_s
+	op = op[0]
+
+	if op=="1"
+		puts "Crear cliente"
+	end
+
+end
+
